@@ -26,27 +26,23 @@ public class Natacion {
 
         //Definir cantidad de tiempo 
         int longitudTiempo = Integer.parseInt(JOptionPane.showInputDialog("Digite la cantidad de tiempos que desea registrar"));
-        //int longitudTiempo = 1;
         
-        
+        String resultado = " ";
+        String nadadorGanador = " ";
         String nadador = " ";
         int tiempoValor = 0;
         int promedioTiempo = 0;
         int tiempoTotal =0;
         int valorComparable = 0;
-        int ganador = 0;
         
-
         //En esta variable guardamos el promedio
         int promedioTotalTiempo [] = new int[longitudNadadores];
         String nadadores[] = new String[longitudNadadores];     
         int tiempo[] = new int[longitudTiempo];
 
-
         //Ciclo que representa los nadadores
         for(int i = 0;i < nadadores.length;i++){
             nadador = JOptionPane.showInputDialog("Digite el nombre del nadador");
-            //nadador = "Jhon doe";
             nadadores[i] = nadador;
             
             
@@ -68,28 +64,28 @@ public class Natacion {
                 //Guardo Promedio en arreglo
                 promedioTotalTiempo[i] = tiempoTotal;
                 
-
-
-            }  
+                resultado += "\n"+"Nadadores:"+nadadores[i]+" Tiempo:"+tiempo[j]+" Promedio:"+promedioTotalTiempo[i]+"\n";
+            } 
             promedioTiempo = 0;
+  
         }
         
-        
+        //Extraigo el valor de la posición 0 para comparar.
         valorComparable = promedioTotalTiempo[0];
-        
-        
-        for(int k=0;k<promedioTotalTiempo.length;k++){
-            System.out.println("Promedio de los nadadores"+promedioTotalTiempo[k]);
+
+        for(int k=1;k<promedioTotalTiempo.length;k++){
             if(promedioTotalTiempo[k] < valorComparable){
                 valorComparable = promedioTotalTiempo[k];
-            }
+                nadadorGanador = nadadores[k];
+                
+                //Concateno el nadador ganador a la respuesta.
+                resultado +="\n"+"Ganador:"+nadadorGanador;
             
+            }
         }
-        System.out.println("El ganador es"+valorComparable);
-        
-        
-        
-        
+
+        JOptionPane.showMessageDialog(null, resultado);
+
  }   
     
 }
